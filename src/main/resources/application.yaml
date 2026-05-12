@@ -22,6 +22,10 @@ server:
   servlet:
     context-path: /api
 
+jwt:
+  secret: SEMCONSECRETKEY20250409
+  expiration: 86400000 # 24 hours in ms
+
 logging:
   level:
     org.hibernate.SQL: DEBUG

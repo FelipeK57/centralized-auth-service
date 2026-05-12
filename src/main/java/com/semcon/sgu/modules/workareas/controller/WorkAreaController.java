@@ -14,19 +14,18 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Tag(name = "Work Areas", description = "Endpoints for managing work areas")
 @RequestMapping("/v1/work-areas")
 public class WorkAreaController {
 
     private final WorkAreaService workAreaService;
 
     @GetMapping
-    @Tag(name = "Work Areas", description = "Endpoints for managing work areas")
     public ResponseEntity<List<WorkAreaDto>> getAllWorkAreas() {
         return ResponseEntity.status(HttpStatus.OK).body(this.workAreaService.getWorkAreasList());
     }
 
     @PostMapping
-    @Tag(name = "Get or Create Work Area", description = "Endpoints for get or create a new work area")
     public ResponseEntity<WorkAreaDto> createWorkArea(@Validated @RequestBody CreateWorkAreaDto createWorkAreaDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.workAreaService.getOrCreateWorkAreaByName(createWorkAreaDto));
     }
