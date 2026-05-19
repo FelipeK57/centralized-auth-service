@@ -25,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -34,6 +35,7 @@ public class SecurityConfig {
 
     private static final String[] PUBLIC_PATHS = {
             "/v1/auth/**",
+            "/v1/system-access/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/v3/api-docs/**",

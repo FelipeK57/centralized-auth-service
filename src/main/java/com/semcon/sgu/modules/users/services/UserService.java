@@ -30,22 +30,26 @@ public class UserService {
 
     public UserDto createUser(CreateUserDto createUserDto) {
         User existingUser = userRepository.findByEmail(createUserDto.email());
-        if (existingUser != null) {
-            WorkArea workArea = workAreaRepository.findByName(createUserDto.workArea());
-            User user = User.builder()
-                    .name(createUserDto.name())
-                    .lastName(createUserDto.lastName())
-                    .documentType(createUserDto.documentType())
-                    .documentNumber(createUserDto.documentNumber())
-                    .role(createUserDto.role())
-                    .email(createUserDto.email())
-                    .password(passwordEncoder.encode(createUserDto.documentNumber()))
-                    .active(true)
-                    .workArea(workArea)
-                    .build();
-            userRepository.save(user);
-            return userMapper.toDto(user);
+
+        if (existingUser == null) {
+            throw new UsersNotFoundException();
         }
-        throw new UsersNotFoundException();
+
+        WorkArea workArea = workAreaRepository.findByName(createUserDto.workArea());
+
+        User user = User.builder()
+                .name(createUserDto.name())
+                .lastName(createUserDto.lastName())
+                .documentType(createUserDto.documentType())
+                .documentNumber(createUserDto.documentNumber())
+                .role(createUserDto.role())
+                .email(createUserDto.email())
+                .password(passwordEncoder.encode(createUserDto.documentNumber()))
+                .active(true)
+                .workArea(workArea)
+                .build();
+        userRepository.save(user);
+        
+        return userMapper.toDto(user);
     }
 }
