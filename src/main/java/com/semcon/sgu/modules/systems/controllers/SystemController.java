@@ -3,7 +3,6 @@ package com.semcon.sgu.modules.systems.controllers;
 import com.semcon.sgu.modules.systems.dto.CreateSystemDto;
 import com.semcon.sgu.modules.systems.dto.SystemDto;
 import com.semcon.sgu.modules.systems.services.SystemService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

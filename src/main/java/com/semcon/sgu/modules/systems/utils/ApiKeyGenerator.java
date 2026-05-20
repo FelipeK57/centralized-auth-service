@@ -2,7 +2,6 @@ package com.semcon.sgu.modules.systems.utils;
 
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.HexFormat;
 

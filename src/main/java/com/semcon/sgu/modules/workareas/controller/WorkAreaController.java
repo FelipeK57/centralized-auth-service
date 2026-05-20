@@ -1,6 +1,7 @@
 package com.semcon.sgu.modules.workareas.controller;
 
 import com.semcon.sgu.modules.workareas.dtos.CreateWorkAreaDto;
+import com.semcon.sgu.modules.workareas.dtos.UpdateWorkAreaDto;
 import com.semcon.sgu.modules.workareas.dtos.WorkAreaDto;
 import com.semcon.sgu.modules.workareas.services.WorkAreaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,5 +29,10 @@ public class WorkAreaController {
     @PostMapping
     public ResponseEntity<WorkAreaDto> createWorkArea(@Validated @RequestBody CreateWorkAreaDto createWorkAreaDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.workAreaService.getOrCreateWorkAreaByName(createWorkAreaDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<WorkAreaDto> updateWorkArea(@Validated @RequestBody UpdateWorkAreaDto updateWorkAreaDto, @PathVariable Integer id) {
+        return  ResponseEntity.status(HttpStatus.OK).body(this.workAreaService.updateWorkArea(id, updateWorkAreaDto));
     }
 }

@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<List<UserDto>> getUsersList() {
-        return ResponseEntity.status(HttpStatus.OK).body(this.userService.getUsersList());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUsersList());
     }
 
     @PostMapping
