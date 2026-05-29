@@ -1,8 +1,10 @@
 package com.semcon.sgu.modules.workareas.services;
 
 import com.semcon.sgu.modules.workareas.dtos.CreateWorkAreaDto;
+import com.semcon.sgu.modules.workareas.dtos.UpdateWorkAreaDto;
 import com.semcon.sgu.modules.workareas.dtos.WorkAreaDto;
 import com.semcon.sgu.modules.workareas.entity.WorkArea;
+import com.semcon.sgu.modules.workareas.exceptions.WorkAreaNotFoundException;
 import com.semcon.sgu.modules.workareas.mappers.WorkAreaMapper;
 import com.semcon.sgu.modules.workareas.repository.WorkAreaRepository;
 import lombok.AllArgsConstructor;
@@ -33,5 +35,15 @@ public class WorkAreaService {
         } else {
             return workAreaMapper.toDto(existingWorkArea);
         }
+    }
+
+    public WorkAreaDto updateWorkArea(Integer id, UpdateWorkAreaDto updateWorkAreaDto) {
+        WorkArea existingWorkArea = workAreaRepository.findById(id).orElse(null);
+        if (existingWorkArea == null) {
+            throw new WorkAreaNotFoundException();
+        }
+        existingWorkArea.setName(updateWorkAreaDto.name());
+        workAreaRepository.save(existingWorkArea);
+        return workAreaMapper.toDto(existingWorkArea);
     }
 }
